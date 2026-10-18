@@ -7,7 +7,10 @@ import jwt from 'jsonwebtoken';
  * @returns {string} Signed JWT token
  */
 export const generateToken = (userId, role) => {
-  const secret = process.env.JWT_SECRET || 'fallback_secret_for_dev_only';
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET must be configured before generating tokens.');
+  }
   const expiresIn = process.env.JWT_EXPIRES_IN || '7d';
 
   return jwt.sign(

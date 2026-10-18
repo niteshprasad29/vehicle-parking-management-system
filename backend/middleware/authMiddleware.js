@@ -26,7 +26,7 @@ export const protect = async (req, res, next) => {
       // Verify token
       const decoded = jwt.verify(
         token,
-        process.env.JWT_SECRET || 'fallback_secret_for_dev_only'
+        process.env.JWT_SECRET
       );
 
       // Fetch user from DB excluding password

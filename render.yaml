@@ -3,13 +3,17 @@ services:
     name: parkease
     runtime: node
     plan: free
-    buildCommand: npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend
+    buildCommand: npm ci --omit=dev --prefix backend && npm ci --prefix frontend && npm run build --prefix frontend
     startCommand: npm start --prefix backend
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
         value: production
+      - key: NODE_VERSION
+        value: 24.19.0
       - key: JWT_SECRET
         generateValue: true
       - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_URL
         sync: false

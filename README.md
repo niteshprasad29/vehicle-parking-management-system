@@ -77,7 +77,7 @@ The React application is in `frontend/`. It runs in the user's browser and provi
 | `frontend/src/shop.css`, `frontend/src/payments.css` | Shop and payment interface styles. |
 | `frontend/package.json` | Declares React, React DOM, Vite, and the frontend development/build commands. |
 
-Vite serves the frontend during development and builds its production assets. The frontend uses `http://localhost:5000/api` during local development and same-origin `/api` in production; set `VITE_API_URL` to override either default.
+Vite serves the frontend during development and builds its production assets. The frontend uses `http://localhost:5000/api` during local development. For a separate frontend host, set `VITE_API_URL` to the backend's public API URL (ending in `/api`); see `frontend/.env.example`.
 
 ### How they work together
 
@@ -188,15 +188,17 @@ Upon successful connection, you will observe:
 
 ## 7. Deploying a Public Demo
 
-This repository includes a Render Blueprint (`render.yaml`) that builds the React frontend and runs it with the Express API as one service.
+The recommended deployment uses Vercel for the React frontend, Render for the Express API, and MongoDB Atlas for persistent data. `render.yaml` configures the Render service; Vercel uses the existing Vite build.
 
-1. Create a MongoDB Atlas cluster and database user. Allow connections from your hosting service, and keep the database password private.
-2. Push this repository to GitHub.
-3. In Render, choose **New** > **Blueprint**, connect the GitHub repository, and apply the detected `render.yaml` configuration.
-4. When prompted, provide `MONGODB_URI` using the Atlas connection string. Render generates a `JWT_SECRET` automatically.
-5. Deploy. Open the public `onrender.com` URL; the API health check is at `/api/health`.
+1. Create an Atlas cluster and a database user. Add Render's outbound IP addresses to Atlas Network Access where available; use broad access only if required by your chosen plan, and protect the database with a strong unique password.
+2. In Vercel, import this GitHub repository, set the project root to `frontend`, use `npm ci` as the install command, `npm run build` as the build command, and `dist` as the output directory. No SPA rewrite is needed because the app does not use URL-based client routing.
+3. Deploy the Vercel project once to obtain its production origin. Then in Render choose **New** > **Blueprint**, connect the same repository, and apply `render.yaml`. Provide the Atlas URI as `MONGODB_URI`, and the Vercel production origin as `CLIENT_URL`. Render generates `JWT_SECRET`; `NODE_ENV` and the Node.js version are configured by the Blueprint.
+4. Copy the Render service URL, then set Vercel's `VITE_API_URL` to `https://<your-render-service>.onrender.com/api` in the Vercel project settings and redeploy.
+5. Verify `https://<your-render-service>.onrender.com/api/health`, then test the Vercel site and its login/data requests.
 
-The free Render service may sleep when idle and take a little longer to respond to its first request. Razorpay checkout is optional; configure `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` in the Render environment settings to enable it. Do not run the demo seed scripts against a public production database: the documented demo accounts use public, fixed passwords.
+Backend variables: `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`, `NODE_ENV`, and the platform-provided `PORT`. Optional payment variables: `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`. Frontend variable: `VITE_API_URL`. Never put backend secrets in Vercel frontend variables. If the JWT secret pasted into this conversation is in use anywhere, replace it with a newly generated value before deployment; this invalidates existing JWTs. Do not run demo seed scripts against a public production database because their passwords are documented in the repository.
+
+The Render free service may sleep while idle and take longer to answer its first request. Configure Razorpay variables only if online checkout is required.
 
 ## 8. Phase 1 API Endpoints
 
