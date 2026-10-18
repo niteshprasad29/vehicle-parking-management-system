@@ -77,7 +77,7 @@ The React application is in `frontend/`. It runs in the user's browser and provi
 | `frontend/src/shop.css`, `frontend/src/payments.css` | Shop and payment interface styles. |
 | `frontend/package.json` | Declares React, React DOM, Vite, and the frontend development/build commands. |
 
-Vite serves the frontend during development and builds its production assets. The frontend defaults to `http://localhost:5000/api` for API calls; set `VITE_API_URL` to override it.
+Vite serves the frontend during development and builds its production assets. The frontend uses `http://localhost:5000/api` during local development and same-origin `/api` in production; set `VITE_API_URL` to override either default.
 
 ### How they work together
 
@@ -186,7 +186,19 @@ Upon successful connection, you will observe:
 
 ---
 
-## 7. Phase 1 API Endpoints
+## 7. Deploying a Public Demo
+
+This repository includes a Render Blueprint (`render.yaml`) that builds the React frontend and runs it with the Express API as one service.
+
+1. Create a MongoDB Atlas cluster and database user. Allow connections from your hosting service, and keep the database password private.
+2. Push this repository to GitHub.
+3. In Render, choose **New** > **Blueprint**, connect the GitHub repository, and apply the detected `render.yaml` configuration.
+4. When prompted, provide `MONGODB_URI` using the Atlas connection string. Render generates a `JWT_SECRET` automatically.
+5. Deploy. Open the public `onrender.com` URL; the API health check is at `/api/health`.
+
+The free Render service may sleep when idle and take a little longer to respond to its first request. Razorpay checkout is optional; configure `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET` in the Render environment settings to enable it. Do not run the demo seed scripts against a public production database: the documented demo accounts use public, fixed passwords.
+
+## 8. Phase 1 API Endpoints
 
 ### Standard Response Formats
 
@@ -224,7 +236,7 @@ Upon successful connection, you will observe:
 
 ---
 
-## 8. Thunder Client API Testing
+## 9. Thunder Client API Testing
 
 A complete Thunder Client collection with environment configuration is provided in `thunder-client/`:
 - **Collection**: `thunder-client/thunder-collection_phase1.json`
@@ -246,5 +258,5 @@ A complete Thunder Client collection with environment configuration is provided 
 
 ---
 
-## 9. Next Phase
+## 10. Next Phase
 - **Phase 2**: Vehicles + Parking Locations + Parking Slots Management.

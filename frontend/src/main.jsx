@@ -6,7 +6,7 @@ import './styles.css';
 import './shop.css';
 import './payments.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api');
 const demoCredentials = {
   email: 'user@parkease.com',
   password: 'User@123',
