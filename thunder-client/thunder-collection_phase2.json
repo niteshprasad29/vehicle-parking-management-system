@@ -1,0 +1,420 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "ParkEase — Phase 2",
+  "dateExported": "2026-09-21",
+  "version": "1.1",
+  "folders": [
+    {
+      "name": "Vehicle",
+      "containsRequests": true
+    },
+    {
+      "name": "ParkingLocation",
+      "containsRequests": true
+    },
+    {
+      "name": "ParkingSlot",
+      "containsRequests": true
+    }
+  ],
+  "requests": [
+    {
+      "name": "V1 — Create Vehicle (USER)",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "POST",
+      "sortNum": 1,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"vehicleNumber\": \"MH12AB1234\",\n  \"vehicleType\": \"CAR\",\n  \"vehicleModel\": \"Honda City\",\n  \"vehicleColor\": \"White\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "201" },
+        { "type": "res-body", "custom": "success", "action": "equal", "value": "true" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V2 — Get My Vehicles (USER)",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "GET",
+      "sortNum": 2,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V3 — Get All Vehicles (ADMIN)",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "GET",
+      "sortNum": 3,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V4 — Get Vehicle by ID",
+      "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}",
+      "method": "GET",
+      "sortNum": 4,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V5 — Update Vehicle",
+      "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}",
+      "method": "PUT",
+      "sortNum": 5,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"vehicleColor\": \"Red\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V6 — Delete Vehicle",
+      "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}",
+      "method": "DELETE",
+      "sortNum": 6,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V7 — Duplicate Vehicle → 409",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "POST",
+      "sortNum": 7,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"vehicleNumber\": \"MH12AB1234\",\n  \"vehicleType\": \"CAR\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "409" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V8 — No Token → 401",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "GET",
+      "sortNum": 8,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "401" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "V9 — STAFF Forbidden → 403",
+      "url": "{{baseUrl}}/api/vehicles",
+      "method": "GET",
+      "sortNum": 9,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{staffToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "403" }
+      ],
+      "folder": "Vehicle"
+    },
+    {
+      "name": "L1 — Create Location (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-locations",
+      "method": "POST",
+      "sortNum": 10,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"ParkEase Central Hub\",\n  \"address\": \"12 Station Road\",\n  \"city\": \"Mumbai\",\n  \"contactNumber\": \"9876543210\",\n  \"openingTime\": \"06:00\",\n  \"closingTime\": \"23:00\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "201" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L2 — Get All Locations (Public)",
+      "url": "{{baseUrl}}/api/parking-locations",
+      "method": "GET",
+      "sortNum": 11,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L3 — Get Locations by City",
+      "url": "{{baseUrl}}/api/parking-locations?city=Mumbai",
+      "method": "GET",
+      "sortNum": 12,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L4 — Get Location by ID (Public)",
+      "url": "{{baseUrl}}/api/parking-locations/{{locationId}}",
+      "method": "GET",
+      "sortNum": 13,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L5 — Update Location (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-locations/{{locationId}}",
+      "method": "PUT",
+      "sortNum": 14,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"INACTIVE\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L6 — Delete Location (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-locations/{{locationId}}",
+      "method": "DELETE",
+      "sortNum": 15,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "L7 — USER Cannot Create → 403",
+      "url": "{{baseUrl}}/api/parking-locations",
+      "method": "POST",
+      "sortNum": 16,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Hack\",\n  \"address\": \"x\",\n  \"city\": \"y\",\n  \"contactNumber\": \"1234567890\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "403" }
+      ],
+      "folder": "ParkingLocation"
+    },
+    {
+      "name": "S1 — Create CAR Slot (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "POST",
+      "sortNum": 17,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"locationId\": \"{{locationId}}\",\n  \"slotNumber\": \"A-001\",\n  \"vehicleType\": \"CAR\",\n  \"floor\": \"Ground\",\n  \"status\": \"AVAILABLE\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "201" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S2 — Create BIKE Slot (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "POST",
+      "sortNum": 18,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"locationId\": \"{{locationId}}\",\n  \"slotNumber\": \"B-001\",\n  \"vehicleType\": \"BIKE\",\n  \"floor\": \"Ground\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "201" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S3 — Create SUV Slot (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "POST",
+      "sortNum": 19,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"locationId\": \"{{locationId}}\",\n  \"slotNumber\": \"C-001\",\n  \"vehicleType\": \"SUV\",\n  \"floor\": \"Level 1\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "201" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S4 — Get All Slots (Public)",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "GET",
+      "sortNum": 20,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S5 — Filter Slots by Location",
+      "url": "{{baseUrl}}/api/parking-slots?locationId={{locationId}}",
+      "method": "GET",
+      "sortNum": 21,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S6 — Filter Slots by vehicleType=CAR",
+      "url": "{{baseUrl}}/api/parking-slots?vehicleType=CAR",
+      "method": "GET",
+      "sortNum": 22,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S7 — Filter Slots by status=AVAILABLE",
+      "url": "{{baseUrl}}/api/parking-slots?status=AVAILABLE",
+      "method": "GET",
+      "sortNum": 23,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S8 — Get Slot by ID (Public)",
+      "url": "{{baseUrl}}/api/parking-slots/{{slotId}}",
+      "method": "GET",
+      "sortNum": 24,
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S9 — Update Slot Status (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-slots/{{slotId}}",
+      "method": "PUT",
+      "sortNum": 25,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"status\": \"MAINTENANCE\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S10 — Delete Slot (ADMIN)",
+      "url": "{{baseUrl}}/api/parking-slots/{{slotId}}",
+      "method": "DELETE",
+      "sortNum": 26,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" }
+      ],
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "200" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S11 — Duplicate Slot → 409",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "POST",
+      "sortNum": 27,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{adminToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"locationId\": \"{{locationId}}\",\n  \"slotNumber\": \"A-001\",\n  \"vehicleType\": \"SUV\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "409" }
+      ],
+      "folder": "ParkingSlot"
+    },
+    {
+      "name": "S12 — USER Cannot Create Slot → 403",
+      "url": "{{baseUrl}}/api/parking-slots",
+      "method": "POST",
+      "sortNum": 28,
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{userToken}}" },
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"locationId\": \"{{locationId}}\",\n  \"slotNumber\": \"Z-999\",\n  \"vehicleType\": \"CAR\"\n}"
+      },
+      "tests": [
+        { "type": "res-code", "custom": "", "action": "equal", "value": "403" }
+      ],
+      "folder": "ParkingSlot"
+    }
+  ]
+}

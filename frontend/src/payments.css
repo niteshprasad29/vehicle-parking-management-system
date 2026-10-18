@@ -1,0 +1,51 @@
+.payment-dialog{width:min(520px,100%)}
+.payment-method-options{display:grid;gap:9px;margin:24px 0 0;padding:0;border:0}
+.payment-method-options legend{margin-bottom:10px;color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+.payment-method-choice{display:flex;align-items:flex-start;gap:12px;padding:13px;border:1px solid var(--line);border-radius:5px;background:#fff;cursor:pointer}
+.payment-method-choice input{flex:0 0 auto;width:16px;height:16px;margin:2px 0 0;accent-color:var(--green)}
+.payment-method-choice span,.payment-method-choice strong,.payment-method-choice small{display:block}
+.payment-method-choice strong{font-size:12px;color:var(--ink)}
+.payment-method-choice small{margin-top:4px;color:var(--muted);font-size:10px;line-height:1.5}
+.payment-method-choice.unavailable{background:#f3f4f1;cursor:not-allowed;opacity:.7}
+.payment-config-note{margin:10px 0 0;color:#80663a;font-size:10px;line-height:1.5}
+.booking-payment-choices{gap:10px;margin-top:20px}
+.booking-payment-choices .payment-method-choice{position:relative;align-items:center;gap:14px;min-height:66px;padding:14px 16px;border-radius:8px;transition:border-color .15s ease,background .15s ease}
+.booking-payment-choices .payment-method-choice:has(input:checked){border-color:#ed5a20;background:#fffaf6;box-shadow:0 0 0 1px #ed5a20}
+.booking-payment-choices .payment-method-choice:focus-within{outline:2px solid #ed5a20;outline-offset:2px}
+.booking-payment-choices .payment-method-choice input{position:absolute;width:1px;height:1px;opacity:0}
+.booking-payment-choices .payment-method-choice strong{font-size:13px}
+.booking-payment-choices .payment-method-choice small{font-size:11px}
+.payment-choice-icon{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:6px;background:#f0eaff;color:#64449b;font-size:18px;font-weight:700}
+.payment-choice-icon svg{display:block}
+.payment-choice-icon.card{background:#e6f4fb;color:#167ba2}
+.payment-choice-icon.cash{background:#e8f5e9;color:#248149}
+.payment-dialog .confirmation-actions{margin-top:22px}
+.booking-payment-receipt{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin-top:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.booking-payment-receipt>span{color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.08em}
+.booking-payment-receipt>strong{text-align:right;font-size:12px}
+.booking-payment-receipt>small{grid-column:1 / -1;color:var(--muted);font-size:10px;overflow-wrap:anywhere}
+.shop-payment-result{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin-top:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.shop-payment-result>span{color:var(--muted);font:10px 'DM Mono',monospace;letter-spacing:.08em}
+.shop-payment-result>strong{text-align:right;font-size:12px}
+.shop-payment-result>small{grid-column:1 / -1;color:var(--muted);font-size:10px}
+.booking-payment-status{display:block;margin-top:4px;font-size:10px;font-weight:700}
+.booking-payment-status.is-paid,.shop-payment-result .is-paid{color:#2f874d}
+.booking-payment-status.is-pending,.shop-payment-result .is-pending{color:#9a6a12}
+.booking-pay{margin-left:10px}
+.booking-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:7px}
+.booking-payment-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0}
+.booking-action-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:7px 10px;border:1px solid #aac4a8;border-radius:6px;background:#edf6e8;color:#244c35;font-size:11px;font-weight:800;line-height:1;cursor:pointer;transition:background .15s ease,border-color .15s ease,transform .15s ease}
+.booking-action-button:hover:not(:disabled){transform:translateY(-1px);border-color:#78a866;background:#def18f}
+.booking-action-button:focus-visible{outline:2px solid #ed5a20;outline-offset:2px}
+.booking-action-button.pay-upi-button{border-color:#8fbe87;background:#e7f5df;color:#205632}
+.booking-action-button.pay-card-button{border-color:#a9c2da;background:#eaf2fa;color:#285579}
+.booking-action-button:disabled{border-color:#c6cec4;background:#f0f2ee;color:#68766d;opacity:1;cursor:not-allowed}
+.qr-payment-dialog{width:min(460px,100%);text-align:center}
+.qr-payment-dialog h2{margin-bottom:8px}
+.qr-payment-reference{margin:0;color:var(--muted);font-size:11px}
+.qr-code-frame{display:grid;place-items:center;width:256px;aspect-ratio:1;margin:20px auto 14px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.qr-code-frame img{display:block;width:240px;height:240px;image-rendering:pixelated}
+.qr-code-frame span{color:var(--muted);font-size:12px}
+.qr-payment-note{max-width:320px;margin:0 auto;color:var(--muted);font-size:11px;line-height:1.55}
+.qr-payment-dialog .confirmation-actions{justify-content:center}
+@media(max-width:650px){.payment-dialog{padding:26px 20px}.payment-dialog .confirmation-actions{flex-direction:column-reverse}.payment-dialog .confirmation-actions button{width:100%}}

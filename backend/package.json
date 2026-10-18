@@ -1,0 +1,38 @@
+{
+  "name": "parkease-backend",
+  "version": "1.0.0",
+  "description": "ParkEase - Vehicle Parking Management System Backend API",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node seed.js",
+    "seed:locations": "node seedParkingLocations.js",
+    "test": "node test-phase1.js"
+  },
+  "keywords": [
+    "parking",
+    "management",
+    "express",
+    "mongodb",
+    "mongoose",
+    "jwt",
+    "parkease"
+  ],
+  "author": "ParkEase Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "razorpay": "^2.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

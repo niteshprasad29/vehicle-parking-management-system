@@ -1,0 +1,304 @@
+{
+  "A. Project Setup": [
+    {
+      "item": "Backend folder exists",
+      "status": "PASS",
+      "file": "backend/",
+      "expected": "Folder exists",
+      "actual": "Folder exists"
+    },
+    {
+      "item": "package.json exists",
+      "status": "PASS",
+      "file": "backend/package.json",
+      "expected": "package.json exists",
+      "actual": "Exists"
+    },
+    {
+      "item": "server.js exists",
+      "status": "PASS",
+      "file": "backend/server.js",
+      "expected": "server.js exists",
+      "actual": "Exists"
+    },
+    {
+      "item": ".env.example exists",
+      "status": "PASS",
+      "file": "backend/.env.example",
+      "expected": ".env.example exists",
+      "actual": "Exists"
+    },
+    {
+      "item": ".gitignore exists",
+      "status": "PASS",
+      "file": ".gitignore",
+      "expected": ".gitignore exists at root",
+      "actual": "Exists"
+    },
+    {
+      "item": "Dependencies installed",
+      "status": "PASS",
+      "file": "backend/package.json",
+      "expected": "express, mongoose, dotenv, cors, bcryptjs, jsonwebtoken",
+      "actual": "bcryptjs, cors, dotenv, express, jsonwebtoken, mongoose, morgan"
+    }
+  ],
+  "B. MongoDB": [
+    {
+      "item": "Connects to Real MongoDB",
+      "status": "PASS",
+      "file": "backend/config/db.js",
+      "expected": "Real MongoDB connection active (readyState: 1)",
+      "actual": "Connected to 127.0.0.1"
+    },
+    {
+      "item": "MONGODB_URI from .env",
+      "status": "PASS",
+      "file": "backend/config/db.js",
+      "expected": "Reads process.env.MONGODB_URI",
+      "actual": "Reads process.env.MONGODB_URI"
+    },
+    {
+      "item": "No memory server fallback",
+      "status": "PASS",
+      "file": "backend/config/db.js",
+      "expected": "Zero mongodb-memory-server references",
+      "actual": "No memory-server used"
+    },
+    {
+      "item": "Connection failure handling",
+      "status": "PASS",
+      "file": "backend/config/db.js",
+      "expected": "Exits process with diagnostic code 1 on failure",
+      "actual": "process.exit(1) on catch"
+    }
+  ],
+  "C. User Model": [
+    {
+      "item": "User model exists",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "Model file exists",
+      "actual": "Exists"
+    },
+    {
+      "item": "Email unique index",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "Unique index on email",
+      "actual": "Index configured"
+    },
+    {
+      "item": "Email lowercase",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "lowercase: true",
+      "actual": "lowercase: true"
+    },
+    {
+      "item": "Password select: false",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "select: false in schema",
+      "actual": "select: false"
+    },
+    {
+      "item": "Roles exactly USER, STAFF, ADMIN",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "Enum: USER, STAFF, ADMIN",
+      "actual": "ADMIN, STAFF, USER"
+    },
+    {
+      "item": "isActive field",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "Boolean isActive field exists",
+      "actual": "Exists, default: true"
+    },
+    {
+      "item": "assignedLocationId field",
+      "status": "PASS",
+      "file": "./models/User.js",
+      "expected": "assignedLocationId field exists",
+      "actual": "Exists, ref: ParkingLocation"
+    }
+  ],
+  "D. Registration": [
+    {
+      "item": "1. Register valid user",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 201 + JWT + No password",
+      "actual": "Status: 201, success: true"
+    },
+    {
+      "item": "2. Duplicate email rejection",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 409 Conflict",
+      "actual": "Status: 409, success: false"
+    },
+    {
+      "item": "3. Invalid email format",
+      "status": "PASS",
+      "file": "backend/validators/authValidators.js",
+      "expected": "HTTP 400 + validation error",
+      "actual": "Status: 400"
+    },
+    {
+      "item": "4. Mismatched passwords",
+      "status": "PASS",
+      "file": "backend/validators/authValidators.js",
+      "expected": "HTTP 400 + Passwords do not match",
+      "actual": "Status: 400"
+    },
+    {
+      "item": "5. Missing required fields",
+      "status": "PASS",
+      "file": "backend/validators/authValidators.js",
+      "expected": "HTTP 400 + field errors array",
+      "actual": "Status: 400, errors: 5"
+    }
+  ],
+  "E. Login": [
+    {
+      "item": "1. Correct email + password",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 200 + JWT + Safe profile",
+      "actual": "Status: 200, token present"
+    },
+    {
+      "item": "2. Correct email + wrong password",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "Status: 401"
+    },
+    {
+      "item": "3. Non-existent email",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "Status: 401"
+    },
+    {
+      "item": "4. Inactive user rejection",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 403 Forbidden",
+      "actual": "Status: 403, msg: Account disabled: Access denied."
+    }
+  ],
+  "F. JWT Authentication": [
+    {
+      "item": "1. GET /me with valid token",
+      "status": "PASS",
+      "file": "backend/middleware/authMiddleware.js",
+      "expected": "HTTP 200 + User object",
+      "actual": "Status: 200"
+    },
+    {
+      "item": "2. GET /me without token",
+      "status": "PASS",
+      "file": "backend/middleware/authMiddleware.js",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "Status: 401"
+    },
+    {
+      "item": "3. GET /me with invalid token",
+      "status": "PASS",
+      "file": "backend/middleware/authMiddleware.js",
+      "expected": "HTTP 401 Unauthorized",
+      "actual": "Status: 401"
+    },
+    {
+      "item": "4. GET /me with expired token",
+      "status": "PASS",
+      "file": "backend/middleware/authMiddleware.js",
+      "expected": "HTTP 401 Token expired",
+      "actual": "Status: 401, msg: Session expired: Please log in again."
+    }
+  ],
+  "G. Role Authorization": [
+    {
+      "item": "RBAC role checks (USER, STAFF, ADMIN)",
+      "status": "PASS",
+      "file": "backend/middleware/roleMiddleware.js",
+      "expected": "403 for unauthorized, 200 for authorized",
+      "actual": "Admin: 200, Staff: 200, User->Admin: 403"
+    }
+  ],
+  "H. Profile": [
+    {
+      "item": "Update name & phone",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 200 + Updated profile",
+      "actual": "Name: Updated Name"
+    },
+    {
+      "item": "Password change wrong current password",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 400 Bad Request",
+      "actual": "Status: 400"
+    },
+    {
+      "item": "Password change correct current password",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "HTTP 200 OK",
+      "actual": "Status: 200"
+    },
+    {
+      "item": "Password remains hashed in MongoDB",
+      "status": "PASS",
+      "file": "backend/models/User.js",
+      "expected": "Bcrypt hash in DB",
+      "actual": "Starts with $2a$10$"
+    }
+  ],
+  "I. Error Handling": [
+    {
+      "item": "Unified Error Envelope & 404",
+      "status": "PASS",
+      "file": "backend/middleware/errorMiddleware.js",
+      "expected": "{ success: false, message, errors: [] }",
+      "actual": "{\"success\":false,\"message\":\"Resource not found - GET /api/non-existent-route\",\"errors\":[\"Resource not found - GET /api/non-existent-route\"],\"stack\":\"Error: Resource not found - GET /api/non-existent-route\\n    at notFound (file:///D:/Khalsa%20Project/Web%20Tech/Vehicle%20Parking%20Management%20System/backend/middleware/errorMiddleware.js:5:17)\\n    at Layer.handle [as handle_request] (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\\n    at trim_prefix (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:328:13)\\n    at D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:286:9\\n    at router.process_params (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:346:12)\\n    at next (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:280:10)\\n    at logger (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\morgan\\\\index.js:177:5)\\n    at Layer.handle [as handle_request] (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\layer.js:95:5)\\n    at trim_prefix (D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:328:13)\\n    at D:\\\\Khalsa Project\\\\Web Tech\\\\Vehicle Parking Management System\\\\backend\\\\node_modules\\\\express\\\\lib\\\\router\\\\index.js:286:9\"}"
+    }
+  ],
+  "J. Security": [
+    {
+      "item": "Password is never returned in API responses",
+      "status": "PASS",
+      "file": "backend/controllers/authController.js",
+      "expected": "undefined in all response objects",
+      "actual": "Verified across register, login, me, profile"
+    },
+    {
+      "item": "JWT_SECRET & MongoDB not hardcoded",
+      "status": "PASS",
+      "file": "backend/server.js",
+      "expected": "Loaded from process.env",
+      "actual": "process.env loaded"
+    },
+    {
+      "item": ".env ignored in .gitignore",
+      "status": "PASS",
+      "file": ".gitignore",
+      "expected": ".gitignore contains .env",
+      "actual": ".env ignored"
+    }
+  ],
+  "K. Thunder Client": [
+    {
+      "item": "Collection & Environment files exist",
+      "status": "PASS",
+      "file": "thunder-client/",
+      "expected": "Collection, env and guide created",
+      "actual": "All 3 files exist"
+    }
+  ]
+}

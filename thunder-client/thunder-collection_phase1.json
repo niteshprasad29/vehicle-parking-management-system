@@ -1,0 +1,195 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "ParkEase - Phase 1 Auth & Health",
+  "collectionId": "parkease-phase1-auth",
+  "dateExported": "2026-09-21T20:38:00.000Z",
+  "version": "1.1",
+  "folders": [
+    {
+      "folderId": "f-health",
+      "name": "1. System Health",
+      "sortNum": 10000
+    },
+    {
+      "folderId": "f-registration",
+      "name": "2. User Registration",
+      "sortNum": 20000
+    },
+    {
+      "folderId": "f-authentication",
+      "name": "3. Authentication & Login",
+      "sortNum": 30000
+    },
+    {
+      "folderId": "f-profile",
+      "name": "4. User Profile & Me",
+      "sortNum": 40000
+    },
+    {
+      "folderId": "f-rbac",
+      "name": "5. Role-Based Access Control (RBAC)",
+      "sortNum": 50000
+    }
+  ],
+  "requests": [
+    {
+      "name": "1.1 System Health Check",
+      "method": "GET",
+      "url": "{{base_url}}/api/health",
+      "folderId": "f-health",
+      "headers": []
+    },
+    {
+      "name": "2.1 Register New Customer",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/register",
+      "folderId": "f-registration",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Rahul Sharma\",\n  \"email\": \"rahul.sharma@example.com\",\n  \"phone\": \"+91 9812345678\",\n  \"password\": \"Pass@123\",\n  \"confirmPassword\": \"Pass@123\"\n}"
+      }
+    },
+    {
+      "name": "2.2 Duplicate Email Registration (Expect 409)",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/register",
+      "folderId": "f-registration",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Rahul Duplicate\",\n  \"email\": \"rahul.sharma@example.com\",\n  \"phone\": \"+91 9812345679\",\n  \"password\": \"Pass@123\",\n  \"confirmPassword\": \"Pass@123\"\n}"
+      }
+    },
+    {
+      "name": "2.3 Password Mismatch Validation (Expect 400)",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/register",
+      "folderId": "f-registration",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"Validation Test\",\n  \"email\": \"test.validation@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"Pass@123\",\n  \"confirmPassword\": \"Pass@456\"\n}"
+      }
+    },
+    {
+      "name": "3.1 Login Customer (User Role)",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "folderId": "f-authentication",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"user@parkease.com\",\n  \"password\": \"User@123\"\n}"
+      }
+    },
+    {
+      "name": "3.2 Login Admin Role",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "folderId": "f-authentication",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"admin@parkease.com\",\n  \"password\": \"Admin@123\"\n}"
+      }
+    },
+    {
+      "name": "3.3 Login Staff Role",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "folderId": "f-authentication",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"staff@parkease.com\",\n  \"password\": \"Staff@123\"\n}"
+      }
+    },
+    {
+      "name": "3.4 Login Invalid Password (Expect 401)",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "folderId": "f-authentication",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"user@parkease.com\",\n  \"password\": \"WrongPassword!\"\n}"
+      }
+    },
+    {
+      "name": "3.5 Login Deactivated User (Expect 403)",
+      "method": "POST",
+      "url": "{{base_url}}/api/auth/login",
+      "folderId": "f-authentication",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"inactive@parkease.com\",\n  \"password\": \"User@123\"\n}"
+      }
+    },
+    {
+      "name": "4.1 Get Profile /me (Valid Bearer Token)",
+      "method": "GET",
+      "url": "{{base_url}}/api/auth/me",
+      "folderId": "f-profile",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{user_token}}" }
+      ]
+    },
+    {
+      "name": "4.2 Get Profile /me Without Token (Expect 401)",
+      "method": "GET",
+      "url": "{{base_url}}/api/auth/me",
+      "folderId": "f-profile",
+      "headers": []
+    },
+    {
+      "name": "4.3 Update Profile Name & Phone",
+      "method": "PUT",
+      "url": "{{base_url}}/api/auth/profile",
+      "folderId": "f-profile",
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{user_token}}" }
+      ],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"name\": \"John Updated Doe\",\n  \"phone\": \"+91 9999988888\"\n}"
+      }
+    },
+    {
+      "name": "5.1 Access Admin-Only Route with Admin Token (Expect 200)",
+      "method": "GET",
+      "url": "{{base_url}}/api/auth/admin-only",
+      "folderId": "f-rbac",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{admin_token}}" }
+      ]
+    },
+    {
+      "name": "5.2 Access Admin-Only Route with User Token (Expect 403 Forbidden)",
+      "method": "GET",
+      "url": "{{base_url}}/api/auth/admin-only",
+      "folderId": "f-rbac",
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{user_token}}" }
+      ]
+    }
+  ]
+}
