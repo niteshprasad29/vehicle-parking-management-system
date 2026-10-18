@@ -79,7 +79,7 @@ app.use('/api/shop', shopRoutes);
 // ==========================================
 // SERVE FRONTEND STATIC FILES IN PRODUCTION
 // ==========================================
-const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+const frontendBuildPath = path.join(process.cwd(), 'frontend/dist');
 
 app.use(express.static(frontendBuildPath));
 
