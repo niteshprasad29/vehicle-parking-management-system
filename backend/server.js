@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import vehicleRoutes from './routes/vehicleRoutes.js';
@@ -16,6 +18,9 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 // Load environment variables from .env
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -46,15 +51,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Root home route (Prevents 404 when opening the base URL)
-app.get('/', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Welcome to the ParkEase Vehicle Parking Management System API!',
-    documentation: 'Use /api/health to check server and database status, or use the registered /api/... route endpoints.',
-  });
-});
-
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
@@ -79,6 +75,27 @@ app.use('/api/pricing', pricingRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/shop', shopRoutes);
+
+// ==========================================
+// SERVE FRONTEND STATIC FILES IN PRODUCTION
+// ==========================================
+// Adjust the folder name ('dist' or 'public' or 'build') to match where your frontend builds its output
+const frontendBuildPath = path.join(__dirname, '../frontend/dist'); 
+
+app.use(express.static(frontendBuildPath));
+
+// Fallback route to serve frontend's index.html for any non-API routes (supports Single Page Applications)
+app.get('*', (req, res, next) => {
+  // If the request starts with /api, let it fall through to the 404 handler
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+  res.sendFile(path.join(frontendBuildPath, 'index.html'), (err) => {
+    if (err) {
+      next(); // If index.html isn't found locally, fallback to the 404 handler
+    }
+  });
+});
 
 // 404 handler for undefined routes
 app.use(notFound);
