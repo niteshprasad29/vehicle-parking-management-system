@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: (origin, callback) => {
       const configuredOrigin = process.env.CLIENT_URL;
-      const isLocalFrontend = !origin || /^https?:\/\/(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/.test(origin);
+      const isLocalFrontend = !origin || /^https?:\/\/(?:localhost|127\.0\.0\.1|[::1])(?::\d+)?$/.test(origin);
 
       if (!origin || origin === configuredOrigin || isLocalFrontend) {
         callback(null, true);
@@ -45,6 +45,15 @@ app.use(
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+// Root home route (Prevents 404 when opening the base URL)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to the ParkEase Vehicle Parking Management System API!',
+    documentation: 'Use /api/health to check server and database status, or use the registered /api/... route endpoints.',
+  });
+});
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
