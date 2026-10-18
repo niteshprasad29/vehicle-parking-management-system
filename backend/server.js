@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
@@ -79,7 +80,10 @@ app.use('/api/shop', shopRoutes);
 // ==========================================
 // SERVE FRONTEND STATIC FILES IN PRODUCTION
 // ==========================================
-const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+const frontendBuildPath = path.resolve(__dirname, '../frontend/dist');
+
+console.log(`[PARKEASE] Serving static files from: ${frontendBuildPath}`);
+console.log(`[PARKEASE] Directory exists: ${fs.existsSync(frontendBuildPath)}`);
 
 app.use(express.static(frontendBuildPath));
 
@@ -88,11 +92,12 @@ app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api')) {
     return next();
   }
-  res.sendFile(path.join(frontendBuildPath, 'index.html'), (err) => {
-    if (err) {
-      next();
-    }
-  });
+  const indexPath = path.join(frontendBuildPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).send('Frontend build files not found.');
+  }
 });
 
 // 404 handler for undefined routes
