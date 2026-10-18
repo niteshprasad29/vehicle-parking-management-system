@@ -79,20 +79,18 @@ app.use('/api/shop', shopRoutes);
 // ==========================================
 // SERVE FRONTEND STATIC FILES IN PRODUCTION
 // ==========================================
-// Adjust the folder name ('dist' or 'public' or 'build') to match where your frontend builds its output
-const frontendBuildPath = path.join(__dirname, '../frontend/dist'); 
+const frontendBuildPath = path.join(__dirname, '../frontend/dist');
 
 app.use(express.static(frontendBuildPath));
 
-// Fallback route to serve frontend's index.html for any non-API routes (supports Single Page Applications)
+// Fallback route to serve frontend's index.html for Single Page Application routing
 app.get('*', (req, res, next) => {
-  // If the request starts with /api, let it fall through to the 404 handler
   if (req.path.startsWith('/api')) {
     return next();
   }
   res.sendFile(path.join(frontendBuildPath, 'index.html'), (err) => {
     if (err) {
-      next(); // If index.html isn't found locally, fallback to the 404 handler
+      next();
     }
   });
 });
