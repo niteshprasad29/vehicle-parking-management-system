@@ -24,7 +24,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
   },
   compressor: {
-    image: 'https://live.staticflickr.com/8144/7118995195_5b35c25c7b_b.jpg',
+    image: 'https://assets-valeo.keepeek.com/medias/domain8143/media3611/542897-j9so97v0h9-preview1.png',
     imageTitle: 'Porsche 911 GT1 Turbo & plumbing',
     imageCredit: 'wbaiv',
     imageSource: 'https://www.flickr.com/photos/9998127@N06/7118995195',
@@ -32,12 +32,16 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
   },
   flatTyre: {
-    image: 'https://live.staticflickr.com/5056/5484583021_f19b310f7a_b.jpg',
+    image: 'https://cdn11.bigcommerce.com/s-ec256bcbe6/images/stencil/1280x1280/products/397/779/My_project-1-4__74281.1677109684.jpg?c=1',
     imageTitle: 'Flat Tyre',
     imageCredit: 'Sean MacEntee',
     imageSource: 'https://www.flickr.com/photos/18090920@N07/5484583021',
     imageLicense: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+  },
+  punctureRepairKit: {
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1QDQ5p6i64nFJJCh-Xu6IYy7Fmn5tqcEP5bj0OGrXlg&s',
+    imageTitle: 'Tyre puncture repair kit',
   },
   microfiber: {
     image: 'https://live.staticflickr.com/4095/4776039058_bd66922668.jpg',
@@ -48,7 +52,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   jumpStarter: {
-    image: 'https://live.staticflickr.com/65535/52579645561_256803fb89_b.jpg',
+    image: 'https://www.bbassets.com/media/uploads/p/l/40330133_2-dp-jummperbooster-cable-800-amp.jpg',
     imageTitle: 'IMPORTANCE OF CAR JUMP STARTER - 1',
     imageCredit: 'automaxfx',
     imageSource: 'https://www.flickr.com/photos/197103350@N07/52579645561',
@@ -56,7 +60,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
   },
   emergencyKit: {
-    image: 'https://live.staticflickr.com/5329/8973974800_6fd81ac269_b.jpg',
+    image: 'https://m.media-amazon.com/images/I/81LBdNJMefL.jpg',
     imageTitle: 'Car Emergency Kits',
     imageCredit: 'jfeuchter',
     imageSource: 'https://www.flickr.com/photos/76614238@N00/8973974800',
@@ -72,7 +76,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-nd/2.0/',
   },
   flashlight: {
-    image: 'https://upload.wikimedia.org/wikipedia/commons/8/84/Flashlight_%28torch%29_in_Hezekiah%27s_Tunnel.jpg',
+    image: 'https://m.media-amazon.com/images/I/819P0ytL5QL.AC_UF894,1000_QL80.jpg',
     imageTitle: "Flashlight (torch) in Hezekiah's Tunnel",
     imageCredit: 'Davidbena',
     imageSource: 'https://commons.wikimedia.org/wiki/File:Flashlight_(torch)_in_Hezekiah%27s_Tunnel.jpg',
@@ -80,7 +84,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
   },
   phoneMount: {
-    image: 'https://live.staticflickr.com/8105/27797093934_1c1552d5ed.jpg',
+    image: 'https://m.media-amazon.com/images/I/711gb2ADy+L.jpg',
     imageTitle: 'Car Phone Holder Finished Project',
     imageCredit: 'tonyr30',
     imageSource: 'https://www.flickr.com/photos/142371194@N07/27797093934',
@@ -88,7 +92,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   gps: {
-    image: 'https://live.staticflickr.com/3260/2765757383_6a5c2aca67_b.jpg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd292CKIX9jDpTCSjA5_ruPkEoNgqbGFn1YEKIh6LP3g&s=10https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd292CKIX9jDpTCSjA5_ruPkEoNgqbGFn1YEKIh6LP3g&s=10.jpg',
     imageTitle: 'Loads of GPS devices in our car',
     imageCredit: 'mroach',
     imageSource: 'https://www.flickr.com/photos/73569497@N00/2765757383',
@@ -103,8 +107,12 @@ const photos = {
     imageLicense: 'CC BY 2.0',
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
+  seatBeltCutter: {
+    image: 'https://m.media-amazon.com/images/I/612WSgVh2uL.AC_UF1000,1000_QL80.jpg',
+    imageTitle: 'Seat-belt cutter / escape tool',
+  },
   airFreshener: {
-    image: 'https://live.staticflickr.com/148/388165208_f27afca191.jpg',
+    image: 'https://cycle.in/cdn/shop/files/Lia-Car-Gel-Seashore_LS.jpg?v=1770896703',
     imageTitle: 'Star of David Car Air Freshener',
     imageCredit: 'zeevveez',
     imageSource: 'https://www.flickr.com/photos/29001414@N00/388165208',
@@ -112,7 +120,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   water: {
-    image: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Tube_well_drinking_water_bottle_Sri_Lanka.jpg',
+    image: 'https://m.media-amazon.com/images/I/61HH020wTFL.AC_UF894,1000_QL80.jpg',
     imageTitle: 'Tube well drinking water bottle Sri Lanka',
     imageCredit: 'Sgroey',
     imageSource: 'https://commons.wikimedia.org/wiki/File:Tube_well_drinking_water_bottle_Sri_Lanka.jpg',
@@ -128,7 +136,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
   },
   sunglasses: {
-    image: 'https://live.staticflickr.com/8454/7993768362_324ae52f7e_b.jpg',
+    image: 'https://cdn.shopify.com/s/files/1/0731/1792/5631/files/Generated_image__Stylish_sunglasses_on_the_beach.jpg',
     imageTitle: 'The Sunglasses',
     imageCredit: 'Tobyotter',
     imageSource: 'https://www.flickr.com/photos/78428166@N00/7993768362',
@@ -136,7 +144,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   emergencyContact: {
-    image: 'https://live.staticflickr.com/8752/29086223662_69e6a85793_b.jpg',
+    image: 'https://i.pinimg.com/736x/9e/40/1c/9e401cfc1d32db69a82118bf2534ff1b.jpg',
     imageTitle: "What's in my pack?",
     imageCredit: 'brewbooks',
     imageSource: 'https://www.flickr.com/photos/93452909@N00/29086223662',
@@ -144,7 +152,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
   },
   umbrella: {
-    image: 'https://live.staticflickr.com/7020/6450761035_81e6837bf4_b.jpg',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6pUc2inQ367_xET5hs9nsMX2ThiPTNdCsml68iTs6A&s=10.jpg',
     imageTitle: 'Umbrella',
     imageCredit: 'princedd',
     imageSource: 'https://www.flickr.com/photos/34226407@N04/6450761035',
@@ -152,7 +160,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   pillow: {
-    image: 'https://live.staticflickr.com/2044/2534173595_86fb395ef0.jpg',
+    image: 'https://pepsindia.com/wp-content/uploads/2025/03/car-cushion-memory-foam-01.jpeg',
     imageTitle: "It's just a freaking pillow",
     imageCredit: 'Brett L.',
     imageSource: 'https://www.flickr.com/photos/51035767928@N01/2534173595',
@@ -160,7 +168,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
   },
   food: {
-    image: 'https://live.staticflickr.com/4082/4736056796_a8373bcb13_b.jpg',
+    image: 'https://m.media-amazon.com/images/I/717XwmtOr0L.AC_UF1000,1000_QL80.jpg',
     imageTitle: 'Vintage Snack Bowls - Nuts, Candy and Pretzels',
     imageCredit: 'GranniesKitchen',
     imageSource: 'https://www.flickr.com/photos/47600671@N04/4736056796',
@@ -168,7 +176,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   wipes: {
-    image: 'https://live.staticflickr.com/5509/14559980433_43973ea879_b.jpg',
+    image: 'https://m.media-amazon.com/images/I/71sKBgfipQL.AC_UF894,1000_QL80.jpg',
     imageTitle: "McDonald's Hand Sanitizing Wipes",
     imageCredit: 'JeepersMedia',
     imageSource: 'https://www.flickr.com/photos/39160147@N03/14559980433',
@@ -176,7 +184,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   tissues: {
-    image: 'https://live.staticflickr.com/2127/4507399504_c7e0bb1270_b.jpg',
+    image: 'https://m.media-amazon.com/images/I/61EoF1UG4lL.AC_UF1000,1000_QL80.jpg',
     imageTitle: 'Box of tissues',
     imageCredit: 'profernity',
     imageSource: 'https://www.flickr.com/photos/38766930@N05/4507399504',
@@ -184,7 +192,7 @@ const photos = {
     licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
   },
   fan: {
-    image: 'https://live.staticflickr.com/3759/11056571983_c9d5bca482_b.jpg',
+    image: 'https://m.media-amazon.com/images/I/81-g50nruHL.AC_SX569.jpg',
     imageTitle: "Poor Man's Bitcoin Mining Rig Update 3x",
     imageCredit: 'brownpau',
     imageSource: 'https://www.flickr.com/photos/44124483743@N01/11056571983',
@@ -198,7 +206,7 @@ const productRows = [
   ['car-phone-charger', 'Car phone charger', 'Power', 'USB-C and USB-A charging for the drive.', 799, 'charger'],
   ['power-bank', 'Power bank', 'Power', 'Extra charge for phones and navigation.', 1299, 'powerBank'],
   ['tyre-inflator', 'Car air compressor / tyre inflator', 'Roadside', 'Top up tyre pressure away from a service station.', 2499, 'compressor'],
-  ['puncture-repair-kit', 'Tyre puncture repair kit', 'Maintenance', 'A compact tyre repair kit for emergencies.', 899, 'flatTyre'],
+  ['puncture-repair-kit', 'Tyre puncture repair kit', 'Maintenance', 'A compact tyre repair kit for emergencies.', 899, 'punctureRepairKit'],
   ['jumper-cables', 'Jumper cables', 'Roadside', 'Heavy-duty leads for a flat battery.', 999, 'jumpStarter'],
   ['warning-triangle', 'Emergency warning triangle', 'Safety', 'Make a stopped vehicle more visible to traffic.', 499, 'emergencyKit'],
   ['flashlight', 'Flashlight / torch', 'Safety', 'A bright torch for low-light roadside checks.', 399, 'flashlight'],
@@ -215,7 +223,7 @@ const productRows = [
   ['gps-navigator', 'GPS navigation device', 'Navigation', 'A dedicated navigation companion for road trips.', 6999, 'gps'],
   ['emergency-contact-card', 'Emergency contact card', 'Safety', 'Keep important contact details within reach.', 99, 'emergencyContact'],
   ['tire-pressure-gauge', 'Portable tyre pressure gauge', 'Maintenance', 'Check tyre pressure before every long trip.', 699, 'tireGauge'],
-  ['escape-tool', 'Seat-belt cutter / escape tool', 'Safety', 'A compact emergency tool for the cabin.', 499, 'tireGauge'],
+  ['escape-tool', 'Seat-belt cutter / escape tool', 'Safety', 'A compact emergency tool for the cabin.', 499, 'seatBeltCutter'],
   ['umbrella', 'Compact travel umbrella', 'Travel', 'A foldable umbrella for sudden weather.', 399, 'umbrella'],
   ['travel-pillow', 'Travel pillow and blanket', 'Comfort', 'A soft neck pillow for long passenger journeys.', 799, 'pillow'],
   ['snack-container', 'Snacks / food container', 'Travel', 'Carry snacks neatly between stops.', 299, 'food'],
